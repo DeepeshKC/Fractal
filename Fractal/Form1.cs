@@ -29,7 +29,6 @@ namespace Fractal
         private HSB HSBcol = new HSB();
         private Pen pen;
 
-
         public Form1()
         {
 
@@ -60,13 +59,14 @@ namespace Fractal
             initvalues();
             xzoom = (xende - xstart) / (double)x1;
             yzoom = (yende - ystart) / (double)y1;
+            mandelbrot();
         }
 
         private void pictureBox2_paint(object sender, PaintEventArgs e)
         {
             Graphics obj = e.Graphics;
             obj.DrawImage(picture, new Point(0, 0));
-            Console.WriteLine("Working???");
+            //Console.WriteLine("Working???");
         }
 
         private void mandelbrot() // calculate all points
@@ -88,7 +88,7 @@ namespace Fractal
                         b = 1.0f - h * h; // brightnes
                                           ///djm added
                         HSBcol.fromHSB(h * 255, 0.8f * 255, b * 255); //convert hsb to rgb then make a Java Color
-                        Color col = Color.FromArgb(0, (int)HSBcol.rChan, (int)HSBcol.gChan, (int)HSBcol.bChan);
+                        Color col = Color.FromArgb((int)HSBcol.rChan, (int)HSBcol.gChan, (int)HSBcol.bChan);
                         Pen p = new Pen(col);
 
                         alt = h;
